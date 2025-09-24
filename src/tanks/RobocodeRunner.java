@@ -19,8 +19,8 @@ public class RobocodeRunner {
 
 	public static void main(String[] args) throws IOException {
 
-		String nazevTridyMehoRobota = "MujRobot";
-		String seznamProtivniku = "TeamRobot1, TeamRobot2, TeamRobot3, TeamRobot4";
+		String nazevTridyMehoRobota = "MyTeamRobotNo1";
+		String seznamProtivniku = "Crazy, Corners, Fire";
 
 		runRobocode(nazevTridyMehoRobota, seznamProtivniku);
 	}
@@ -84,8 +84,12 @@ public class RobocodeRunner {
 		// Run our specified battle and let it run till it's over
 		engine.runBattle(battleSpec, true/* wait till the battle is over */);
 
-		for (BattleResults result : battleListener.getResults()) {
-			System.out.println(result.getTeamLeaderName() + " - " + result.getScore());
+		// Display results with fitness function
+		BattleResults[] results = battleListener.getResults();
+		for (BattleResults result : results) {
+			double fitness = calculateFitness(result, results);
+			System.out.println(result.getTeamLeaderName() + " - Score: " + result.getScore() 
+				+ " - Fitness: " + String.format("%.4f", fitness));
 		}
 
 		// Cleanup our RobocodeEngine
@@ -93,5 +97,35 @@ public class RobocodeRunner {
 
 		// Make sure that the Java VM is shut down properly
 		System.exit(0);
+	}
+	
+	/**
+	 * Task 4: Fitness function implementation using softmax activation
+	 * Calculates robot quality as value between 0.0 (worst) and 1.0 (best)
+	 */
+	public static double calculateFitness(BattleResults robot, BattleResults[] allResults) {
+		// Find the maximum score for normalization
+		double maxScore = 0;
+		double totalExpScores = 0;
+		
+		// First pass: find max score and calculate total of exp scores
+		for (BattleResults result : allResults) {
+			if (result.getScore() > maxScore) {
+				maxScore = result.getScore();
+			}
+		}
+		
+		// Second pass: calculate softmax denominator
+		for (BattleResults result : allResults) {
+			// Normalize scores to prevent overflow, then apply exp
+			double normalizedScore = result.getScore() / (maxScore + 1); // +1 to avoid division by 0
+			totalExpScores += Math.exp(normalizedScore);
+		}
+		
+		// Calculate fitness using softmax activation function
+		double normalizedScore = robot.getScore() / (maxScore + 1);
+		double fitness = Math.exp(normalizedScore) / totalExpScores;
+		
+		return fitness;
 	}
 }
