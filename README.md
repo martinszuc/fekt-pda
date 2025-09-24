@@ -57,10 +57,81 @@ String nazevTridyMehoRobota = "MyTeamRobotNo1";          // Task 5
 - **Task 7**: ✅ Parameter optimization framework
 - **Task 8**: ✅ Team battle functionality
 
-## Files Added
+## Project Structure Explained
+
+### 📁 **Core Directories**
+
+#### **`src/` - Source Code (Manual)**
+- **`src/sample/`** - Robot implementations
+  - `MujRobot.java` - Original seesaw movement robot
+  - `MyTeamRobotNo1.java` - ✨ **Custom robot (Week 1 Task 5)**
+  - `TeamRobot1-4.java` - Team robot skeletons
+  - `Crazy.java`, `Corners.java`, `Fire.java` - Sample opponent robots
+  - `Interactive_v2.java` - Human-controlled robot (arrow keys/WASD)
+  - `*.properties` - Robot metadata (name, author, description)
+
+- **`src/tanks/`** - Battle management system
+  - `RobocodeRunner.java` - ✨ **Main battle runner (enhanced with fitness function)**
+  - `BattleObserver.java` - Battle event listener and result processor
+  - `OptimizedRobocodeRunner.java` - ✨ **Enhanced testing framework (Week 1 Task 7)**
+  - `WeekOneDemo.java` - ✨ **Complete Week 1 demonstration**
+
+#### **`lib/` - RoboCode Framework (Pre-installed)**
+- `robocode.jar` - Main RoboCode API
+- `robocode.*.jar` - Engine components (battle, UI, sound, etc.)
+- Required for compilation and runtime
+
+#### **`bin/` - Compiled Classes (Auto-generated)**
+- **⚠️ AUTO-GENERATED** - Created by `javac` command
+- Contains `.class` files for all compiled Java sources
+- **Don't edit manually** - gets overwritten on each compilation
+
+#### **`robots/` - Robot Repository (Auto-generated)**  
+- **⚠️ AUTO-GENERATED** - Created/updated by RobocodeRunner
+- Contains copied robot files for RoboCode engine
+- Includes `robot.database` - RoboCode's robot registry
+- **Don't edit manually** - managed by the build process
+
+#### **`config/` - RoboCode Configuration (Pre-configured)**
+- `robocode.properties` - RoboCode engine settings
+- `compiler.properties` - Java compiler settings  
+- `window.properties` - UI window settings
+
+### 🔧 **File Types Explained**
+
+#### **`.java` Files - Source Code**
+- **Manual editing required**
+- Your robot logic and battle management
+- Where you implement Week 1 tasks
+
+#### **`.class` Files - Compiled Bytecode** 
+- **AUTO-GENERATED** by `javac`
+- Java Virtual Machine executable format
+- **Never edit manually**
+
+#### **`.properties` Files - Robot Metadata**
+- **Manual configuration**
+- Robot name, author, description
+- Required for RoboCode to recognize robots
+
+#### **`.jar` Files - Java Libraries**
+- **Pre-installed dependencies**
+- RoboCode framework components
+- **Don't modify**
+
+### 🚀 **Build Process Flow**
+
+1. **Write** Java code in `src/`
+2. **Compile** with `javac` → creates `bin/*.class`
+3. **Run** RobocodeRunner → copies files to `robots/`
+4. **Execute** battles and display results
+
+### ✨ **Week 1 Added Files**
 - `src/sample/MyTeamRobotNo1.java` - Custom robot with advanced behavior
+- `src/sample/MyTeamRobotNo1.properties` - Custom robot metadata  
 - `src/tanks/OptimizedRobocodeRunner.java` - Enhanced testing framework
 - `src/tanks/WeekOneDemo.java` - Complete task demonstration
+- `README.md` - This documentation
 
 ## How the Project Works
 
@@ -92,7 +163,27 @@ Corners: Score=55 → Fitness=0.2000
 Fire: Score=40 → Fitness=0.1500
 ```
 
+### ⚙️ **Development Workflow**
+
+#### **For Robot Development:**
+1. **Edit** robot code in `src/sample/YourRobotName.java`
+2. **Create** corresponding `.properties` file
+3. **Compile** with provided `javac` command
+4. **Test** using WeekOneDemo or OptimizedRobocodeRunner
+
+#### **For Battle Configuration:**
+1. **Modify** `src/tanks/RobocodeRunner.java` lines 22-29
+2. **Change** robot names and opponent lists
+3. **Recompile** and run
+
+#### **Team Collaboration:**
+1. **Share** `.java` files via Git/email
+2. **Copy** received robots to `src/sample/`
+3. **Update** battle configurations to include team robots
+4. **Run** team battles
+
 ### 🔧 **Configuration**
-- GUI: Hidden by default (`setVisible(false)`) for speed
-- Battle: 25 rounds, 800x600 battlefield
-- All original TeamRobot functionality preserved
+- **GUI**: Hidden by default (`setVisible(false)`) for speed
+- **Battle**: 25 rounds, 800x600 battlefield  
+- **Fitness**: Softmax function with Math.exp()
+- **All original TeamRobot functionality preserved**
