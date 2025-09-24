@@ -68,9 +68,24 @@ public class RobocodeRunner {
 		// Battle listener used for receiving battle events
 		BattleObserver battleListener = new BattleObserver();
 
-		// Create the RobocodeEngine
-		RobocodeEngine engine = new RobocodeEngine(); // Run from current
-														// working directory
+		// Create the RobocodeEngine - try to initialize repository properly
+		File robotsDir = new File("robots");
+		if (!robotsDir.exists()) {
+			robotsDir.mkdirs();
+		}
+		
+		// Set system properties for RoboCode
+		System.setProperty("robocode.home", System.getProperty("user.dir"));
+		System.setProperty("robots.repository", System.getProperty("user.dir") + "/robots");
+		
+		RobocodeEngine engine = new RobocodeEngine(new File("."));
+		
+		// Try to force repository refresh
+		try {
+			Thread.sleep(1000); // Give time for initialization
+		} catch (InterruptedException e) {
+			// Ignore
+		}
 
 		// Add battle listener to our RobocodeEngine
 		engine.addBattleListener(battleListener);

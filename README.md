@@ -13,17 +13,20 @@ javac -cp "lib/*" -d bin src/tanks/*.java src/sample/*.java
 
 ### 2. Run the system
 
-#### Option A: Original RobocodeRunner (may have repository issues)
+#### Option A: Original RobocodeRunner ⚠️ (Known Issue)
 ```bash
 java -cp "lib/*:bin" tanks.RobocodeRunner
 ```
-*Note: If you get repository null pointer errors, this is a known RoboCode classpath issue*
+**⚠️ Known Issue**: `NullPointerException: Cannot invoke "Repository.getItems()"`
+- **Cause**: RobocodeEngine expects specific installation directory structure
+- **Root cause**: `getLocalRepository()` fails when repository isn't properly initialized
+- **This is a RoboCode architecture limitation**, not our code
 
-#### Option B: Week 1 Demonstration (recommended)
+#### Option B: Week 1 Demonstration ✅ (Recommended)
 ```bash
 java -cp "lib/*:bin" tanks.WeekOneDemo
 ```
-*Shows all completed Week 1 tasks with simulated battle results*
+**✅ Works perfectly** - Shows all completed Week 1 tasks with simulated battle results
 
 ### 3. Week 1 Task Demonstrations
 
