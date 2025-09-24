@@ -45,13 +45,8 @@ java -cp "lib/*:bin" tanks.OptimizedRobocodeRunner
 #### Alternative 3: Manual Configuration (if RobocodeRunner works)
 Edit `src/tanks/RobocodeRunner.java` line 26 & 29:
 ```java
-String seznamProtivniku = "Crazy, Corners, Fire";        // Task 2
+String seznamProtivniku = "Crazy, Corners, Fire";        // Task 2  
 String nazevTridyMehoRobota = "MyTeamRobotNo1";          // Task 5
-```
-
-#### Run complete Week 1 demo:
-```bash
-java -cp "lib/*:bin" tanks.WeekOneDemo
 ```
 
 ## Week 1 Implementations
