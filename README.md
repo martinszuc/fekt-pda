@@ -30,16 +30,23 @@ java -cp "lib/*:bin" tanks.WeekOneDemo
 
 ### 3. Week 1 Task Demonstrations
 
-#### Test different opponents (Task 2):
-Edit `src/tanks/RobocodeRunner.java` line 26:
-```java
-String seznamProtivniku = "Crazy, Corners, Fire";
+**⚠️ Due to RobocodeEngine repository issues, use these alternatives:**
+
+#### Alternative 1: WeekOneDemo (Recommended)
+```bash
+java -cp "lib/*:bin" tanks.WeekOneDemo
 ```
 
-#### Test custom robot (Task 5):
-Edit `src/tanks/RobocodeRunner.java` line 29:
+#### Alternative 2: OptimizedRobocodeRunner (Works with simulated battles)
+```bash
+java -cp "lib/*:bin" tanks.OptimizedRobocodeRunner  
+```
+
+#### Alternative 3: Manual Configuration (if RobocodeRunner works)
+Edit `src/tanks/RobocodeRunner.java` line 26 & 29:
 ```java
-String nazevTridyMehoRobota = "MyTeamRobotNo1";
+String seznamProtivniku = "Crazy, Corners, Fire";        // Task 2
+String nazevTridyMehoRobota = "MyTeamRobotNo1";          // Task 5
 ```
 
 #### Run complete Week 1 demo:
