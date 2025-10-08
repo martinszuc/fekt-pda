@@ -40,6 +40,12 @@
     <artifactId>jgrapht-jdk1.5</artifactId>
     <version>0.7.3</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.jgrapht/jgrapht-ext (for visualization) -->
+<dependency>
+    <groupId>com.github.vlsi.mxgraph</groupId>
+    <artifactId>jgraphx</artifactId>
+    <version>4.1.0</version>
+</dependency>
 
 
   </dependencies>
