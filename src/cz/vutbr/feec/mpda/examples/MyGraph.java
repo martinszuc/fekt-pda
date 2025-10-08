@@ -15,7 +15,6 @@ public class MyGraph {
 		MyVertex v2 = getExistingOrCreateNew(u2Id);
 		
 		v1.addNeighbour(v2);
-		v2.addNeighbour(v1);
 	}
 	
 	private MyVertex getExistingOrCreateNew(int id) {
@@ -58,7 +57,7 @@ public class MyGraph {
 	}
 
 	public List<MyVertex> getVertexList() {
-		return null;
+		return new ArrayList<>(vertices.values());
 	}
 
 	public void traversalDFSRecursive(int i) {
@@ -66,7 +65,18 @@ public class MyGraph {
 	}
 
 	private void traversalDFSRecursive(MyVertex v) {
-		System.out.println("Not yet implemented");
+		if (v == null || v.isUsed()) {
+			return;
+		}
+		
+		v.setUsed(true);
+		System.out.print(v.getId() + "   ");
+		
+		for (MyVertex neighbour : v.getNeighbours()) {
+			if (!neighbour.isUsed()) {
+				traversalDFSRecursive(neighbour);
+			}
+		}
 	}
 
 	@Override
