@@ -30,14 +30,32 @@ public class P01_executable {
 		Vector<Edge> path = bfs.getPath(s, t);
 		Edge e = g.getEdge("s", "a");
 		
-//		e.setFlow(13);
-		 e.setFlow(11);
+		// Testing options: uncomment to see how pre-existing flow affects algorithm
+//		e.setFlow(13);  // Saturates edge - bottleneck will be 0
+//		e.setFlow(11);  // Partial flow - suboptimal result (maxFlow = 12)
 		
 		System.out.println(g);
 		
 		System.out.println("TASK 3");
 		MaxFlow mf = new MaxFlow(g);
-		int bottleneck = mf.getBottleneck(path);
+		
+		int maxFlow = 0;
+		path = bfs.getPath(s, t);
+		
+		while (path != null) {
+			int bottleneck = mf.getBottleneck(path);
+			
+			for (Edge edge : path) {
+				edge.setFlow(edge.getFlow() + bottleneck);
+			}
+			
+			maxFlow += bottleneck;
+			System.out.println(g);
+			
+			path = bfs.getPath(s, t);
+		}
+		
+		System.out.println("Maximum flow: " + maxFlow);
 
 	}
 

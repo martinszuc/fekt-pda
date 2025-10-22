@@ -11,6 +11,7 @@ import java.util.Vector;
 public class MaxFlow {
 
 	private Graph g;
+	private Vector<Edge> resEdges = new Vector<>(); // Store residual edges
 
 	public MaxFlow(Graph g) {
 		super();
@@ -37,15 +38,36 @@ public class MaxFlow {
 			throw new FlowNetworkException("Sink is not in the network!");
 		}
 		int maxFlow = 0;
-		// TODO Implement method
 		
+		// Edmonds-Karp: Ford-Fulkerson with BFS for path finding
+		BFS bfs = new BFS(g);
+		Vertex s = g.getVertex(start);
+		Vertex t = g.getVertex(sink);
+		
+		Vector<Edge> path = bfs.getPath(s, t);
+		while (path != null) {
+			int bottleneck = getBottleneck(path);
+			residualPath(g, path, bottleneck);
+			maxFlow += bottleneck;
+			path = bfs.getPath(s, t);
+		}
+		
+		// Remove all residual edges
+		g.getEdges().removeAll(resEdges);
 		
 		System.out.println("Maximum flow is "+maxFlow);
 		return maxFlow;
 	}
 	
 	private void residualPath(Graph g, Vector<Edge> path, int bottleneck) throws FlowNetworkException {
-		// TODO Implement method
+		for (Edge edge : path) {
+			edge.setFlow(edge.getFlow() + bottleneck);
+			
+			Edge backwardEdge = new Edge(edge.getEnd(), edge.getStart(), bottleneck);
+			backwardEdge.setFlow(0);
+			g.getEdges().add(backwardEdge);
+			resEdges.add(backwardEdge);
+		}
 	}
 
 	

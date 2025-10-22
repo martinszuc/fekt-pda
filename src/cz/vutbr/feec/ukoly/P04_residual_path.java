@@ -34,7 +34,19 @@ public class P04_residual_path {
 	}
 	
 	private static void residualPath(Graph g, Vector<Edge> path) throws FlowNetworkException {
-		// TODO Implement method
+		// Find minimum residual capacity (bottleneck) in the path
+		int bottleneck = Integer.MAX_VALUE;
+		for (Edge edge : path) {
+			int residual = edge.getCapacity() - edge.getFlow();
+			if (residual < bottleneck) {
+				bottleneck = residual;
+			}
+		}
+		
+		// Augment flow by bottleneck value
+		for (Edge edge : path) {
+			edge.setFlow(edge.getFlow() + bottleneck);
+		}
 	}
 
 }
