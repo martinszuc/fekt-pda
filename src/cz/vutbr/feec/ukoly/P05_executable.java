@@ -1,0 +1,40 @@
+package cz.vutbr.feec.ukoly;
+
+import cz.vutbr.feec.MaxFlow.FlowNetworkException;
+import cz.vutbr.feec.MaxFlow.Graph;
+import cz.vutbr.feec.MaxFlow.MaxFlow;
+
+public class P05_executable {
+
+	public static void main(String[] args) throws FlowNetworkException {
+		Graph g = new Graph();	
+		//Graph 1 - bottleneck is 15
+		g.addToGraph("s", "a", 13);
+		g.addToGraph("s", "c", 10);
+		g.addToGraph("a", "b", 5);
+		g.addToGraph("b", "c", 50);
+		g.addToGraph("c", "d", 35);
+		g.addToGraph("b", "t", 3);
+		g.addToGraph("d", "t", 20);
+
+		
+		//Graph 2 - bottleneck is 19
+//		g.addToGraph("s", "a", 10);
+//		g.addToGraph("s", "c", 10);
+//		g.addToGraph("a", "b", 4);
+//		g.addToGraph("a", "c", 2);
+//		g.addToGraph("a", "d", 8);
+//		g.addToGraph("c", "d", 9);
+//		g.addToGraph("d", "b", 6);
+//		g.addToGraph("b", "t", 10);
+//		g.addToGraph("d", "t", 10);
+
+		System.out.println(g);
+
+		MaxFlow mf = new MaxFlow(g);
+		mf.computeMaxFlow("s", "t");
+		System.out.println(g);
+
+	}
+
+}
