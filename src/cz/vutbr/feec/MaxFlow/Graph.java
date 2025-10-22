@@ -81,9 +81,12 @@ public class Graph {
 		for (Edge edge : edges) {
 			// iteruje pres vsechny hrany grafu
 			if (edge.getStart() == start) {
-				// kdyz najde hranu ktera vychazi z daneho vrcholu, prida ji do
-				// seznamu
-				possibleEdges.add(edge.getEnd());
+				// Only consider edges with available capacity (residual > 0)
+				if (edge.getCapacity() - edge.getFlow() > 0) {
+					// kdyz najde hranu ktera vychazi z daneho vrcholu, prida ji do
+					// seznamu
+					possibleEdges.add(edge.getEnd());
+				}
 			}
 		}
 		return possibleEdges;
