@@ -20,7 +20,6 @@ bin/
 .idea/shelf
 .idea/usage.statistics.xml
 .idea/libraries
-*.iml
 *.iws
 out/
 

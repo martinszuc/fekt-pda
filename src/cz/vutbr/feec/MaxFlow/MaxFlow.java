@@ -51,9 +51,12 @@ public class MaxFlow {
 	
 	public int getBottleneck(Vector<Edge> path) {
 		int bottleneck = Integer.MAX_VALUE;
-		// TODO Implement method
-		
-		
+		for (Edge edge : path) {
+			int residual = edge.getCapacity() - edge.getFlow();
+			if (residual < bottleneck) {
+				bottleneck = residual;
+			}
+		}
 		System.out.println("Bottleneck is " + bottleneck);
 		return bottleneck;
 	}

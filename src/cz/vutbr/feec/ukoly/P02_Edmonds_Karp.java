@@ -29,7 +29,13 @@ public class P02_Edmonds_Karp {
 		Vector<Edge> path = bfs.getPath(s, t);
 		MaxFlow mf = new MaxFlow(g);
 		
-		//TODO: Implement tasks 4_1, 4_2, 4_3
+		int bottleneck = mf.getBottleneck(path);
+		
+		for (Edge edge : path) {
+			edge.setFlow(edge.getFlow() + bottleneck);
+		}
+		
+		System.out.println(g);
 
 	}
 

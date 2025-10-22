@@ -75,7 +75,7 @@ public class Graph {
 	 * 		vrati seznam sousedu, ke kterym vede hrana
 	 */
 	// TODO tuhle metodu je potreba jednoduse upravit pro potreby MaxFlow tj.
-	// aby byly uvažovány jenom hrany s volnou kapacitou
+	// aby byly uvazovany jenom hrany s volnou kapacitou
 	public Vector<Vertex> getPossibleNeighbors(Vertex start) {
 		Vector<Vertex> possibleEdges = new Vector<>();
 		for (Edge edge : edges) {
