@@ -43,3 +43,4 @@ hs_err_pid*
 # Log files
 *.log
 
+/07_cv_edit_v3_pytorch - Copy.pdf
